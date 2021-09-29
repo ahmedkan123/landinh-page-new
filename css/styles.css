@@ -87,7 +87,15 @@ section {
     color: #fff;
     transition: ease 0.3s all;
 }
-
+/* .act {
+    background: rgb(133, 126, 231);
+    color: #fff;
+    transition: ease 0.3s all;
+} */
+.active1 {
+    background-color: rgb(156, 158, 250);
+    color: #fff;
+}
 /* Header Styles */
 .page__header {
     background: #fff;

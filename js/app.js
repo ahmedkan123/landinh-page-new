@@ -17,7 +17,9 @@
  * Define Global Variables
  *
  */
- var sections = document.querySelectorAll("section");
+var sections = document.querySelectorAll("section");
+var lengthSections = sections.length;
+//  console.log(lengthSections);
 /**
  * End Global Variables
  * Start Helper Functions
@@ -46,9 +48,9 @@
 
 var navbar = document.querySelector("nav #navbar__list");
 
-for (let i = 1; i <= 5; i++) {
+for (let i = 1; i <= lengthSections; i++) {
   var liElement = document.createElement("li");
-//   var sectionId = sections[i].getAttribute("id");
+  //   var sectionId = sections[i].getAttribute("id");
   navbar.appendChild(liElement);
   liElement.innerHTML = `<a href="#section${i}" class="menu__link">Section ${i}</a>`;
 }
@@ -72,19 +74,18 @@ for (let i = 1; i <= 5; i++) {
 // scrollToSection();
 let linkClick = document.querySelectorAll("nav a");
 // console.log(linkClick);
-  linkClick.forEach(a => {
-    a.addEventListener("click", function(e) {
-      e.preventDefault();
+linkClick.forEach((a) => {
+  a.addEventListener("click", function (e) {
+    e.preventDefault();
     //   var hrefElement = a.getAttribute("href");
-      var sectionId = document.querySelector(a.getAttribute("href"));
-      sectionId.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "nearest",
-      });
+    var sectionId = document.querySelector(a.getAttribute("href"));
+    sectionId.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "nearest",
     });
   });
-
+});
 
 // linkClick.
 
@@ -93,13 +94,39 @@ let linkClick = document.querySelectorAll("nav a");
 // var sections = document.querySelectorAll("section");
 window.onscroll = function () {
   sections.forEach((section) => {
+    // var current = "";
+
     if (
       section.getBoundingClientRect().top >= -400 &&
       section.getBoundingClientRect().top <= 150
     ) {
+      // current = section.getAttribute("id");
+      // console.log(current);
       section.classList.add("active");
     } else {
       section.classList.remove("active");
     }
   });
+  // linkClick.forEach((link) => {
+  //   link.classList.remove("active1");
+  //   if (link.classList.contains(current)) {
+  //     link.classList.add("active1");
+  //   }
+  // });
 };
+// window.onscroll = () => {
+//   var current = "";
+
+//   sections.forEach((section) => {
+//     const sectionTop = section.offsetTop;
+//     if (scrollY >= sectionTop - 60) {
+//       current = section.getAttribute("id"); }
+//   });
+
+//   linkClick.forEach((a) => {
+//     a.classList.remove("active1");
+//     if (a.classList.contains(current)) {
+//       a.classList.add("active1");
+//     }
+//   });
+// };
