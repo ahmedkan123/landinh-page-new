@@ -33,25 +33,6 @@ const lengthSections = sections.length;
  */
 
 // build the nav
-// const hamburger = document.querySelector(".hamburger");
-// const navMenu = document.querySelector(".navbar__list");
-
-// hamburger.addEventListener("click", mobileMenu);
-
-// function mobileMenu() {
-//     hamburger.classList.toggle("active");
-//     navMenu.classList.toggle("active");
-// }
-
-// const navLink = document.querySelectorAll("a");
-
-// navLink.forEach(n => n.addEventListener("click", closeMenu));
-
-// function closeMenu() {
-//     hamburger.classList.remove("active");
-//     navMenu.classList.remove("active");
-// }
-// Add class 'active' to section when near top of viewport
 
 // Scroll to anchor ID using scrollTO event
 
@@ -73,12 +54,12 @@ for (let i = 1; i <= lengthSections; i++) {
 
 // Scroll to anchor ID when click link using scrollIntoView
 
-let linkClick = document.querySelectorAll("nav a");
+var linkClick = document.querySelectorAll("nav a");
 linkClick.forEach((a) => {
   a.addEventListener("click", function (e) {
     e.preventDefault();
-    var sectionId = document.querySelector(a.getAttribute("href"));
-    sectionId.scrollIntoView({
+    var sectionHref = document.querySelector(a.getAttribute("href"));
+    sectionHref.scrollIntoView({
       behavior: "smooth",
       block: "start",
       inline: "nearest",
@@ -87,8 +68,7 @@ linkClick.forEach((a) => {
 });
 
 // when click on link is active
-var ul = document.getElementById("navbar__list");
-var liLinks = ul.querySelectorAll("li");
+var liLinks = navbar.querySelectorAll("li");
 liLinks.forEach((li) => {
   li.addEventListener("click", function () {
     liLinks.forEach((liElem) => {
@@ -107,12 +87,13 @@ window.onscroll = function () {
       section.getBoundingClientRect().top <= 150
     ) {
       section.classList.add("your-active-class");
-      var currentId = section.getAttribute("id");
-      document.querySelectorAll("nav a").forEach((el) => {
-        el.classList.remove("active");
-      });
-      var selector = `nav a[href="#${currentId}"]`;
-      document.querySelector(selector).classList.add("active");
+      let currentId = section.getAttribute("id");
+      linkClick.forEach((elem) => {
+        elem.classList.remove("active");
+      });     
+      let element = `a[href="#${currentId}"]`;
+      let aId = document.querySelector(element);
+      aId.classList.add("active");
     } else {
       section.classList.remove("your-active-class");
     }
